@@ -1,0 +1,118 @@
+<html>
+<head>
+    <script>
+        document.getElementById("txtEID").value=localStorage.getItem("email");
+    </script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+     <script src="js/jquery-1.8.2.min.js"></script>
+    <script>
+        function doShowPrev(ref) {
+            // alert("file");
+            var image = document.getElementById('prev');
+            image.src = URL.createObjectURL(ref.files[0]);
+        }
+    </script>
+    <script>
+        $(document).ready(function(){
+        $("#btnFetch").click(function(){
+            var url="/fetchRecord?emailid="+$("#txtEID").val();
+            $.get(url,function(response){
+                $("#Name").val(response[0].name);
+                $("#txtM").val(response[0].mobile);
+                $("#txtA").val(response[0].address);
+                $("#city").val(response[0].city);
+                $("#txtS").val(response[0].state);
+                $("#prev").prop("src","uploads/"+response[0].profilepic);
+                $("#jasoos").val(response[0].profilepic);
+            })
+        })
+        })
+    </script>
+    <title>User Profile</title>
+</head>
+
+<body>
+    <form method="post" enctype="multipart/form-data">
+        <input type="hidden" id="jasoos" name="jasoos">
+    <div class="container">
+        <div class="row bg-danger">
+            <div class="col-md-12 mt-2">
+                <center>
+                    <h3>USER PROFILE</h3>
+                </center>
+            </div>
+        </div>
+       
+            <div class="row">
+                <div class="col-md-6 mt-3">
+                    <label for="txtEID" class="form-label">EMAIL ID</label>
+                    <input type="email" class="form-control" readonly name="txtEID" placeholder="Enter Your user ID" id="txtEID" >
+                </div>
+                <div class="col-md-3 mt-5">
+                    <button type="button" class="btn btn-outline-danger" id="btnFetch" value="Fetch">Fetch</button>
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-md-6">
+                    <label for="Name" class="form-label">NAME</label>
+                    <input type="text" id="Name" class="form-control" name="Name" placeholder="Enter Your Name" required>
+                </div>
+                <div class="col-md-3">
+                    <label for="txtM" class="form-label">CONTACT NUMBER</label>
+                    <input type="number" class="form-control" id="txtM" name="txtM" placeholder="Enter Your Mobile Number"
+                        required>
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-md-12">
+                    <label for="txtA" class="form-label">ADDRESS</label>
+                    <input type="text" class="form-control" id="txtA" name="txtA" placeholder="Residence">
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-md-4">
+                    <label for="city" class="form-label">CITY</label>
+                    <input type="text" class="form-control" id="city" name="city" placeholder="Residence">
+                </div>
+                <div class="col-md-4">
+                    <label for="txtS" class="form-label" >STATE</label>
+                    <select id="txtS" class="form-select" name="txtS">
+                        <option selected>None</option>
+                        <option>Punjab</option>
+                        <option>Haryana</option>
+                        <option>Himachal Pradesh</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-4">
+                    <label for="Pic" class="form-label">PROFILE PIC</label>
+                    <input type="file" class="form-control"  name="Pic" id="Pic" onchange="doShowPrev(this);">
+    
+                </div>
+                <div class="col-md-4 mt-4 g-5">
+                    <img src="" alt="" id="prev" width="100" height="100">
+            </div>
+
+            </div>
+            <div class="row mt-5">
+                <div class="col-md-4">
+                </div>
+                <div class="col-md-3">
+                    <button type="submit" formaction="/Save" class="btn btn-outline-info ">Save</button>
+                </div>
+                <div class="col-md-3">
+                    <button type="submit" formaction="/Update" class="btn btn-outline-warning">Update</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>

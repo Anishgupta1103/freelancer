@@ -1,0 +1,82 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+        <script src="js/jquery-1.8.2.min.js"></script>
+    <script src="js/angular.min.js"></script>
+    <title>Angular JS</title>
+<script>
+    var mymodule=angular.module("myOwnModule",[]);
+    var myController=mymodule.controller("myController1",function($scope){
+        $scope.fName="Anish Gupta";
+        $scope.fn="Fill First Name";
+        $scope.ln="Fill Last Name";
+        $scope.full="";
+        $scope.doJoin=function()
+        {
+            $scope.full=$scope.fn+" "+$scope.ln;
+        }
+        $scope.jsonAry = [{
+                    name: "bugatti Chiron",
+                    price: 3000000
+                },
+                {
+                    name: "Lamborghini Aventador",
+                    price: 400000
+                },
+                {
+                    name: "Ferrari Monza",
+                    price: 1000000
+                },
+                {
+                    name: "Koeniggness Jesko",
+                    price: 3000000
+                }
+            ];
+            $scope.doDelete=function(name)
+            {
+                alert(name);
+            }
+            $scope.selItem=$scope.jsonAry[0].name;
+            $scope.doShowSelected=function()
+            {
+                alert($scope.selItem)
+            }
+    })
+</script>
+</head>
+<body ng-app="myOwnModule" ng-controller="myController1">
+   First Name <input type="text" ng-model="fName">
+   <br><br>
+{{fName}}   <br><br>
+F.Name <input type="text" ng-model="fn"><br><br>
+L.Name <input type="text" ng-model="ln"><br><br>
+
+<input type="button" ng-click="doJoin();" value="Join"><br><br>
+ Full Name <input type="text" ng-model="full"><br>    
+
+ <center>ALL CARS</center>
+<table width="400" border="1" align="center">
+<tr ng-repeat="obj in jsonAry">
+    <td>{{$index+1}}</td>
+    <td>{{obj.name}}</td>
+    <td>{{obj.price}}</td>
+    <td align="center">
+        <input type="button" value="delete" ng-click="doDelete(obj.name);">
+    </td>
+</tr>
+</table>
+<br><br>
+<center>
+<select ng-change="doShowSelected();" ng-model="selItem">
+    <option ng-repeat="obj in jsonAry" value="{{obj.name}}">{{obj.name}}</option>
+
+</select>
+</center>
+</body>
+</html>

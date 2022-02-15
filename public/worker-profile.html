@@ -1,0 +1,166 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+    <script src="js/jquery-1.8.2.min.js"></script>
+    <script>
+        function doShowPrev(ref) {
+            // alert("file");
+            var image = document.getElementById('prev');
+            image.src = URL.createObjectURL(ref.files[0]);
+        }
+        function doShowID(reference) {
+            var image = document.getElementById('ID');
+            image.src = URL.createObjectURL(reference.files[0]);
+        }
+    </script>
+    <title>Worker Profile</title>
+</head>
+
+<body>
+    <form action="/submit" method="post" enctype="multipart/form-data">
+        <input type="hidden" id="jasoos" name="jasoos">
+        <div class="container">
+            <div class="row bg-danger">
+                <div class="col-md-12">
+                    <center>
+                        <h3>WORKER PROFILE</h3>
+                    </center>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="txtEID" class="form-label">EMAIL ID</label>
+                    <input type="email" class="form-control" name="txtEID" placeholder="Enter Your user ID" id="txtEID"
+                        required>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 mt-3">
+                    <label for="Name" class="form-label">NAME</label>
+                    <input type="text" id="Name" class="form-control" name="Name" placeholder="Enter Your Name"
+                        required>
+                </div>
+                <div class="col-md-4 mt-3">
+                    <label for="txtM" class="form-label">CONTACT NUMBER</label>
+                    <input type="number" class="form-control" id="txtM" name="txtM"
+                        placeholder="Enter Your Mobile Number" required>
+                </div>
+                <div class="col-md-4 mt-5">
+                    <label for="city" class="form-label">CITY</label>
+                    <input list="cities" name="city" id="city">
+                    <datalist id="cities">
+                        <option value="Mumbai">
+                        <option value="Delhi">
+                        <option value="Bangalore">
+                        <option value="Hyderabad">
+                        <option value="Kokata">
+                        <option value="Bathinda">
+                        <option value="Chandigarh">
+                        <option value="Pune">
+                        <option value="Bhopal">
+                        <option value="Agra">
+                        <option value="Jalandhar">
+                        <option value="Amritsar">
+                        <option value="Jaipur">
+                        <option value="Ludhiana">
+                        <option value="Srinagar">
+                        <option value="Jodhpur">
+                        <option value="Noida">
+                        <option value="Dehradun">
+                        <option value="Jammu">
+                        <option value="Udaipur">
+                        <option value="Patiala">
+                        <option value="Rohtak">
+                        <option value="Panipat">
+                        <option value="Sonipat">
+                        <option value="New Delhi">
+                        <option value="Mirzapur">
+                        <option value="Sri Ganganagar">
+                    </datalist>
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-md-12">
+                    <label for="txtA" class="form-label">ADDRESS</label>
+                    <input type="text" class="form-control" id="txtA" name="txtA" placeholder="Residence">
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-md-4">
+                    <label for="cate" class="form-label">CATEGORY</label>
+                    <select id="cate" class="form-select" name="cate">
+                        <option selected>None</option>
+                        <option>Appliance Repair</option>
+                        <option>Home Painting</option>
+                        <option>Cleaning</option>
+                        <option>Home Repair</option>
+                        <option>Skin Clinic</option>
+                        <option>Furniture Making</option>
+                        <option>Home Spa</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label for="exp" class="form-label">EXPERIENCE</label>
+                    <select id="exp" class="form-select" name="exp">
+                        <option selected>None</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                        <option>6</option>
+                        <option>7</option>
+                        <option>8</option>
+                        <option>9</option>
+                        <option>10</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label for="shop" class="form-label">SHOP/FIRM</label>
+                    <input type="text" id="shop" class="form-control" name="shop" placeholder="Your Shop/Firm's name"
+                        required>
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-md-12">
+                    <label for="prevwork" class="form-label">WORK DONE</label>
+                    <textarea name="prevwork" id="prevwork" cols="150" rows="3">
+                    </textarea>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-3">
+                    <label for="pic" class="form-label">PROFILE PIC</label>
+                    <input type="file" class="form-control" name="pic" id="pidic" onchange="doShowPrev(this);">
+
+                </div>
+                <div class="col-md-3 mt-4 g-5">
+                    <img src="" alt="Pic" id="prev" width="100" height="100">
+                </div>
+                <div class="col-md-3">
+                    <label for="idp" class="form-label">PROFILE PIC</label>
+                    <input type="file" class="form-control" name="idp" id="idp" onchange="doShowID(this);">
+
+                </div>
+                <div class="col-md-3 mt-4 g-5">
+                    <img src="" alt="ID" id="prev" width="100" height="100">
+                </div>
+
+            </div>
+            <br>
+            <center>
+                <button type="submit" class="btn btn-outline-danger ">Submit</button>
+            </center>
+    </form>
+    </div>
+</body>
+
+</html>
